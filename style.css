@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 30px;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  color: #38bdf8;
+}
+
+header p {
+  color: #94a3b8;
+}
+
+/* Search */
+.search-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 12px 20px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #0f172a;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0ea5e9;
+  transform: scale(1.05);
+}
+
+/* Loading */
+#loading {
+  text-align: center;
+  display: none;
+  margin: 10px;
+}
+
+/* Layout */
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Profile Card */
+#profile {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  line-height: 1.6;
+}
+
+/* Repo Section */
+#repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+/* Repo Card */
+.repo-card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.repo-card:hover {
+  transform: translateY(-5px);
+  background: #334155;
+}
+
+/* 🔥 FIX: Repo Name Overflow */
+.repo-card h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+
+  max-height: 2.6em;   /* limits to ~2 lines */
+  line-height: 1.3em;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+/* Repo Text */
+.repo-card p {
+  font-size: 0.9rem;
+  color: #cbd5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  input {
+    width: 180px;
+  }
+}

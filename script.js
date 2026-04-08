@@ -1,77 +1,135 @@
-const searchBtn = document.getElementById("searchBtn");
+// 🔐 Add token (keep empty before submission)
+const TOKEN = "";
+
+// Elements
 const input = document.getElementById("searchInput");
 const profile = document.getElementById("profile");
 const repos = document.getElementById("repos");
+const stats = document.getElementById("stats");
 const loading = document.getElementById("loading");
+const sortSelect = document.getElementById("sort");
+const filterSelect = document.getElementById("filter");
+const themeToggle = document.getElementById("themeToggle");
 
-// Event
-searchBtn.addEventListener("click", () => {
-  const username = input.value.trim();
-  if (!username) return;
-  getUserData(username);
-});
+let allRepos = [];
+let filteredRepos = [];
 
-// Enter key support
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") searchBtn.click();
-});
+// 🌙 Theme Load
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  themeToggle.innerText = "🌞";
+}
 
-// Fetch Data
-async function getUserData(username) {
-  try {
-    loading.style.display = "block";
-    profile.innerHTML = "";
-    repos.innerHTML = "";
+// 🌙 Toggle
+themeToggle.onclick = () => {
+  document.body.classList.toggle("light");
 
-    const userRes = await fetch(`https://api.github.com/users/${username}`);
-    const userData = await userRes.json();
-
-    if (userData.message) {
-      profile.innerHTML = `<h2>${userData.message} ❌</h2>`;
-      loading.style.display = "none";
-      return;
-    }
-
-    const repoRes = await fetch(`https://api.github.com/users/${username}/repos`);
-    const repoData = await repoRes.json();
-
-    renderProfile(userData);
-    renderRepos(repoData);
-
-    loading.style.display = "none";
-
-  } catch (err) {
-    profile.innerHTML = "<h2>Error fetching data ⚠️</h2>";
-    loading.style.display = "none";
+  if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "light");
+    themeToggle.innerText = "🌞";
+  } else {
+    localStorage.setItem("theme", "dark");
+    themeToggle.innerText = "🌙";
   }
-}
+};
 
-// Profile UI
-function renderProfile(user) {
-  profile.innerHTML = `
-    <h2>${user.name || "No Name"}</h2>
-    <p>@${user.login}</p>
-    <p>${user.bio || "No bio available"}</p>
-    <hr>
-    <p>👥 Followers: ${user.followers}</p>
-    <p>➡️ Following: ${user.following}</p>
-    <p>📦 Repos: ${user.public_repos}</p>
-  `;
-}
+// 🔍 Search
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    getUserData(input.value.trim());
+  }
+});
 
-// Repo UI
-function renderRepos(repoList) {
-  if (!Array.isArray(repoList) || repoList.length === 0) {
-    repos.innerHTML = "<p>No repositories found</p>";
+// Fetch
+async function getUserData(username) {
+  loading.style.display = "block";
+
+  const headers = TOKEN ? { Authorization: `token ${TOKEN}` } : {};
+
+  const userRes = await fetch(`https://api.github.com/users/${username}`, { headers });
+  const user = await userRes.json();
+
+  if (user.message) {
+    profile.innerHTML = `<h2>${user.message} ❌</h2>`;
+    loading.style.display = "none";
     return;
   }
 
-  repos.innerHTML = repoList.map(repo => `
+  const repoRes = await fetch(`https://api.github.com/users/${username}/repos`, { headers });
+  const repoData = await repoRes.json();
+
+  allRepos = repoData;
+  filteredRepos = repoData;
+
+  renderProfile(user);
+  renderStats(user, repoData);
+  renderRepos(repoData);
+
+  loading.style.display = "none";
+}
+
+// Profile
+function renderProfile(user) {
+  profile.innerHTML = `
+    <h2>${user.name || ""}</h2>
+    <p>@${user.login}</p>
+    <p>${user.bio || ""}</p>
+  `;
+}
+
+// Stats
+function renderStats(user, repos) {
+  const stars = repos.reduce((a, r) => a + r.stargazers_count, 0);
+
+  stats.innerHTML = `
+    <div>👥 ${user.followers}</div>
+    <div>📦 ${user.public_repos}</div>
+    <div>⭐ ${stars}</div>
+  `;
+}
+
+// Repos
+function renderRepos(list) {
+  repos.innerHTML = list.map(r => `
     <div class="repo-card">
-      <h3>${repo.name}</h3>
-      <p>⭐ ${repo.stargazers_count}</p>
-      <p>🍴 ${repo.forks_count}</p>
-      <p>🧠 ${repo.language || "N/A"}</p>
+      <h3 title="${r.name}">${r.name}</h3>
+      <p>⭐ ${r.stargazers_count}</p>
+      <p>🍴 ${r.forks_count}</p>
+      <button onclick="addFav('${r.name}')">❤️</button>
     </div>
   `).join("");
+}
+
+// Filter
+filterSelect.onchange = () => {
+  if (filterSelect.value === "high") {
+    filteredRepos = allRepos.filter(r => r.stargazers_count > 10);
+  } else if (filterSelect.value === "low") {
+    filteredRepos = allRepos.filter(r => r.stargazers_count <= 10);
+  } else {
+    filteredRepos = allRepos;
+  }
+  renderRepos(filteredRepos);
+};
+
+// Sort
+sortSelect.onchange = () => {
+  let sorted = [...filteredRepos];
+
+  if (sortSelect.value === "stars") {
+    sorted.sort((a, b) => b.stargazers_count - a.stargazers_count);
+  } else if (sortSelect.value === "forks") {
+    sorted.sort((a, b) => b.forks_count - a.forks_count);
+  }
+
+  renderRepos(sorted);
+};
+
+// Favorites
+function addFav(name) {
+  let favs = JSON.parse(localStorage.getItem("favRepos")) || [];
+  if (!favs.includes(name)) {
+    favs.push(name);
+    localStorage.setItem("favRepos", JSON.stringify(favs));
+  }
 }

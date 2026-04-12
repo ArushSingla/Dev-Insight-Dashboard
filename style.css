@@ -17,7 +17,6 @@ body {
   align-items: center;
   padding: 15px 30px;
   background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(10px);
 }
 
 .header input {
@@ -75,6 +74,15 @@ select {
   border-radius: 6px;
 }
 
+/* Extra */
+.extra {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+
 /* Repo Grid */
 #repos {
   display: grid;
@@ -117,7 +125,7 @@ select {
   display: none;
 }
 
-/* 🌞 Light Mode */
+/* Light Mode */
 .light {
   background: #f8fafc;
   color: #0f172a;
@@ -129,6 +137,6 @@ select {
 
 .light .card,
 .light .repo-card {
-  background: #ffffff;
-  color: #0f172a;
+  background: white;
+  color: black;
 }

@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <title>DevScope Dashboard</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header class="header">
@@ -39,9 +38,13 @@
 
       <select id="filter">
         <option value="">Filter</option>
-        <option value="high">High Stars (>10)</option>
-        <option value="low">Low Stars (≤10)</option>
+        <option value="high">High Stars</option>
+        <option value="low">Low Stars</option>
       </select>
+    </div>
+
+    <div class="extra">
+      <div id="analytics" class="card"></div>
     </div>
 
     <div id="repos"></div>

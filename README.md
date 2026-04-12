@@ -1,131 +1,120 @@
-# 🚀 Dev Insight Dashboard
+# 🚀 DevScope Dashboard
 
-## 📌 Project Overview
-Dev Insight Dashboard is a web application that allows users to search for GitHub developers and explore detailed insights about their profiles. It provides information such as repositories, followers, and programming languages in an interactive and user-friendly interface.
+DevScope is a modern, interactive GitHub user dashboard that allows users to search any GitHub profile and visualize key data in a clean and intuitive interface.
 
----
-
-## 🎯 Objective
-The objective of this project is to demonstrate:
-- JavaScript fundamentals
-- API integration using Fetch API
-- Use of Array Higher-Order Functions
-- Responsive UI development
+This project demonstrates real-world frontend development skills using the GitHub REST API, including data fetching, processing, and dynamic UI updates.
 
 ---
 
-## 🌐 API Used
+## 🌟 Features
 
-This project uses the GitHub REST API to fetch real-time data.
-
-🔗 Base URL:
-https://api.github.com/
-
-🔍 Endpoints Used:
-- /users/{username} → Fetch user profile details
-- /users/{username}/repos → Fetch user repositories
-
-### 📊 Data Retrieved:
-- Profile information (name, bio, followers, following)
-- Repository details (stars, forks, language)
-
-### 💡 Reason for Choosing this API:
-The GitHub API provides real-time and structured developer data, making it ideal for building an interactive dashboard with search, filtering, and sorting features.
-
-### 📊 Data Used:
-- User profile details (name, bio, followers, following)
-- Repository data
-- Stars, forks, and programming languages
-
-### 💡 Why this API?
-The GitHub API provides real-time developer data, making the application practical and useful while showcasing real-world API integration.
+- 🔍 Search any GitHub user  
+- 👤 View profile details (name, username, bio)  
+- 📊 Display key stats (followers, repositories, total stars)  
+- 📦 Explore repositories in a responsive grid  
+- 🔃 Sort repositories by stars or forks  
+- 🔍 Filter repositories based on popularity  
+- 🧠 Language analytics (top 5 languages used)  
+- ❤️ Save favorite repositories using LocalStorage  
+- 🌙 Dark mode / 🌞 Light mode toggle  
+- ⚡ Smooth, modern, and responsive UI  
 
 ---
 
-## ✨ Features
+## 🛠️ Tech Stack
 
-### 🔍 Core Features
-- Search GitHub users
-- Display user profile information
-- Show repositories dynamically
-- Filter repositories based on stars or forks
-- Sort repositories (ascending/descending)
-- Mark repositories as favorites
-- Dark mode / Light mode toggle
+- HTML5  
+- CSS3 (Glassmorphism + Responsive Design)  
+- JavaScript (Vanilla JS)  
+- GitHub REST API  
 
 ---
 
-## ⚙️ Technical Implementation
+## ⚙️ How to Run Locally
 
-### 📌 JavaScript Concepts Used
-- Fetch API
-- DOM Manipulation
-- Event Handling
-- ES6 Features
-
-### 🔁 Higher-Order Functions Used
-- map() → Display repository data
-- filter() → Filter repositories
-- sort() → Sort repositories
-- reduce() → Analyze language usage
-
----
-
-## 🎨 UI/UX Features
-- Responsive design (mobile, tablet, desktop)
-- Clean and modern interface
-- Loading indicators
-- Interactive buttons and transitions
-
----
-
-## ⭐ Bonus Features (Optional)
-- Debounced search
-- Pagination
-- LocalStorage for saving favorites
-- Language usage visualization
-
----
-
-## 📁 Project Structure
-/dev-insight-dashboard
-│── index.html
-│── style.css
-│── script.js
-│── README.md
-
----
-
-## 🚀 How to Run the Project
-1. Clone the repository  
-   git clone https://github.com/ArushSingla/Dev-Insight-Dashboard.git
+1. Clone the repository:
+   git clone https://github.com/your-username/devscope-dashboard.git  
 
 2. Open the project folder  
 
 3. Open index.html in your browser  
 
----
-
-## 📅 Milestones
-- Milestone 1: Project Planning
-- Milestone 2: API Integration
-- Milestone 3: Core Features
-- Milestone 4: Deployment
+4. Enter a GitHub username and press Enter  
 
 ---
 
-## ✅ Best Practices Followed
-- Clean and readable code
-- Modular structure
-- Meaningful variable names
-- Responsive design
-- Error handling for API calls
+## 🔐 API Usage & Rate Limit
+
+This project uses the GitHub API, which has a limit for unauthenticated requests.
+
+If you see this error:
+API rate limit exceeded
+
+You can fix it by adding your own GitHub Personal Access Token.
+
+### ➤ Add Token (Optional)
+
+Open script.js and update:
+
+const TOKEN = "your_token_here";
+
+⚠️ Security Notice:
+- Do NOT share your token publicly  
+- Do NOT upload it to GitHub  
+- Always remove it before submission  
 
 ---
 
-## 💪 Final Note
-This project helps in understanding real-world JavaScript development by working with APIs and building an interactive user interface.
+## 🧠 Concepts Used
+
+- Fetch API with async/await  
+- DOM manipulation  
+- Event handling  
+- Array methods:
+  - map()  
+  - filter()  
+  - sort()  
+  - reduce()  
+- LocalStorage for saving favorites  
+- Conditional rendering  
+- Responsive UI design  
 
 ---
 
-⭐ Thank you for visiting this project!
+## 📊 Project Milestones
+
+- Milestone 1: API Integration  
+- Milestone 2: UI Rendering  
+- Milestone 3: Sorting & Filtering  
+- Milestone 4: Analytics & Interaction  
+
+---
+
+## 📸 Preview
+
+The dashboard includes:
+- Profile card  
+- Stats section  
+- Repository grid  
+- Language analytics panel  
+
+---
+
+## 🚀 Future Improvements
+
+- Add graphical charts for analytics  
+- Highlight favorite repositories visually  
+- Add search suggestions/autocomplete  
+- Deploy live using GitHub Pages or Netlify  
+
+---
+
+## 👨‍💻 Author
+
+Arush Singla  
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, please consider giving it a ⭐ on GitHub.

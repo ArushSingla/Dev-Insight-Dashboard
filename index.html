@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,13 +20,11 @@
 
 <section class="dashboard">
 
-  <!-- LEFT -->
   <div class="left">
     <div id="profile" class="card"></div>
     <div id="stats" class="stats"></div>
   </div>
 
-  <!-- RIGHT -->
   <div class="right">
 
     <div class="controls">
@@ -54,5 +52,101 @@
 </section>
 
 <script src="script.js"></script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DEVinsight — GitHub Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header>
+    <div class="logo">DEV<span>insight</span></div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <span id="themeIcon">☀️</span> Light Mode
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Explore <em>GitHub</em> at a Glance</h1>
+      <p>Search repositories and developers. Filter, sort, and discover.</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-wrap">
+      <div class="search-input-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search repositories or users..."
+          autocomplete="off"
+        />
+      </div>
+      <button class="search-btn" id="searchBtn">Search</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="repos">Repositories</button>
+      <button class="tab-btn" data-tab="users">Users</button>
+    </div>
+
+    <!-- Controls (repos only) -->
+    <div class="controls" id="repoControls">
+      <span class="control-label">Filter by Language:</span>
+      <select id="langFilter">
+        <option value="">All Languages</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="TypeScript">TypeScript</option>
+        <option value="Python">Python</option>
+        <option value="Java">Java</option>
+        <option value="C++">C++</option>
+        <option value="Go">Go</option>
+        <option value="Rust">Rust</option>
+        <option value="CSS">CSS</option>
+        <option value="HTML">HTML</option>
+      </select>
+
+      <span class="control-label" style="margin-left:0.5rem">Sort by:</span>
+      <select id="sortSelect">
+        <option value="best_match">Best Match</option>
+        <option value="stars">Most Stars</option>
+        <option value="forks">Most Forks</option>
+        <option value="updated">Recently Updated</option>
+      </select>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar" id="statsBar" style="display:none">
+      <div class="stat-pill">Total Results: <b id="totalCount">0</b></div>
+      <div class="stat-pill" id="displayedPill" style="display:none">Showing: <b id="displayedCount">0</b></div>
+    </div>
+
+    <!-- Results Grid -->
+    <div class="results-grid" id="resultsGrid">
+      <div class="state-box">
+        <div class="icon">🔭</div>
+        <p>Search for repositories or users to get started.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
